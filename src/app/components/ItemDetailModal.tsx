@@ -57,6 +57,7 @@ export function ItemDetailModal({ item, onClose }: { item: any, onClose: () => v
                                 transition={{ duration: 0.8 }}
                                 src={gallery[currentImg]}
                                 alt={item.title}
+                                decoding="async"
                                 className="absolute inset-0 w-full h-full object-cover opacity-80"
                             />
                         </AnimatePresence>

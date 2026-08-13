@@ -179,7 +179,7 @@ export const LeadershipModal = ({ isOpen, onClose, onItemClick }: Omit<ModalProp
         {experiences.map((exp, i) => (
           <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-colors flex flex-col">
             <div className="h-48 relative bg-zinc-900 border-b border-white/10">
-              <img src={exp.img} alt={exp.title} className="w-full h-full object-cover opacity-70" />
+              <img src={exp.img} alt={exp.title} loading="lazy" decoding="async" className="w-full h-full object-cover opacity-70" />
             </div>
             <div className="p-6 flex-1 flex flex-col">
               <h3 className="text-white font-bold text-lg mb-1">{exp.title}</h3>
@@ -392,7 +392,7 @@ export const EngineeringModal = ({ isOpen, onClose, onItemClick }: Omit<ModalPro
         {projects.map((p, i) => (
           <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-colors flex flex-col">
             <div className="aspect-video relative bg-zinc-900 border-b border-white/10">
-              <img src={p.img} alt={p.title} className="w-full h-full object-cover opacity-70" />
+              <img src={p.img} alt={p.title} loading="lazy" decoding="async" className="w-full h-full object-cover opacity-70" />
             </div>
             <div className="p-6 flex-1 flex flex-col">
               <h3 className="text-white font-bold text-lg mb-3 leading-tight">{p.title}</h3>
