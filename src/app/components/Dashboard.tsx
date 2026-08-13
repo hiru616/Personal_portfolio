@@ -199,12 +199,12 @@ export function Dashboard() {
   }, []);
 
   return (
-    <div className="w-full min-h-screen text-white relative">
+    <div className="w-full min-h-screen text-white relative flex flex-col">
       <div className="fixed inset-0 w-full h-full z-0 bg-[#050505]">
         <img src="/images/bg1.jpeg" className="w-full h-full object-cover opacity-70" alt="Background" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto p-4 md:p-5 overflow-hidden lg:translate-x-[clamp(24px,6vw,130px)]">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto p-4 md:p-5 flex-1 flex flex-col overflow-hidden lg:translate-x-[clamp(24px,6vw,130px)]">
 
         {/* THIS IS THE PARENT GRID MOTION DIV */}
         <motion.div
@@ -265,7 +265,7 @@ export function Dashboard() {
             <div className="space-y-2.5">
               {topProjects.map((proj, i) => (
                 <div key={i} onClick={() => setDeepDiveItem(proj)} className="relative group flex items-center p-2.5 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] transition-all cursor-pointer shadow-lg">
-                  <img src={proj.img} className="w-11 h-11 rounded-lg object-cover mr-4 opacity-70 group-hover:opacity-100 transition-opacity" alt={proj.title} />
+                  <img src={proj.img} loading="lazy" decoding="async" className="w-11 h-11 rounded-lg object-cover mr-4 opacity-70 group-hover:opacity-100 transition-opacity" alt={proj.title} />
                   <div className="flex-1">
                     <h3 className="text-white font-semibold">{proj.title}</h3>
                     <div className="flex gap-2 mt-1">
@@ -322,7 +322,7 @@ export function Dashboard() {
                   <p className="text-xs text-gray-400 mt-0.5 line-clamp-2">{evt.desc}</p>
 
                   <div className="absolute right-full top-0 mr-4 w-56 bg-black border border-white/20 rounded-xl p-2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 shadow-2xl hidden lg:block">
-                    <img src={evt.img} className="w-full h-32 object-cover rounded-lg mb-2" alt={evt.title} />
+                    <img src={evt.img} loading="lazy" decoding="async" className="w-full h-32 object-cover rounded-lg mb-2" alt={evt.title} />
                     <p className="text-xs text-gray-300 font-bold">{evt.role}</p>
                   </div>
                 </div>
@@ -378,7 +378,7 @@ export function Dashboard() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 1 }}
-          className="mt-4 pt-3 pb-2 border-t border-white/10 text-center"
+          className="mt-auto pt-3 pb-2 border-t border-white/10 text-center"
         >
           <p className="text-xs text-gray-500 tracking-widest">
             © {new Date().getFullYear()} Ishakya Gamage · <span className="text-gray-400">@hiru616</span>
