@@ -21,12 +21,12 @@ export function ItemDetailModal({ item, onClose }: { item: any, onClose: () => v
         <AnimatePresence>
             <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6">
 
-                {/* LIGHTER BACKDROP SO BACKGROUND IMAGE SHOWS THROUGH */}
+                {/* FULL-SCREEN BLURRED BACKDROP */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 bg-black/40 backdrop-blur-md"
+                    className="absolute inset-0 bg-black/50 backdrop-blur-lg"
                     onClick={onClose}
                 />
 

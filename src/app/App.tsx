@@ -15,7 +15,7 @@ export default function App() {
           // Show Loading Terminal First
           <motion.div
             key="loader"
-            exit={{ opacity: 0, y: -20, transition: { duration: 0.5 } }}
+            exit={{ opacity: 0, y: -20, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}
             className="absolute inset-0 z-50"
           >
             <TerminalLoader onComplete={() => setIsBooting(false)} />
@@ -25,7 +25,7 @@ export default function App() {
           <motion.div
             key="dashboard"
             initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1, transition: { duration: 0.8, ease: 'easeOut' } }}
+            animate={{ opacity: 1, scale: 1, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }}
             className="absolute inset-0 overflow-y-auto"
           >
             <Dashboard />
