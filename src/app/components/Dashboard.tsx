@@ -128,14 +128,14 @@ const topProjects = [
 ];
 
 const logisticsEvents = [
-  { title: "CSE Batch '23 Rep", role: "Department Representative", desc: "Primary student liaison for the 2023 CSE intake across semesters 4-6.", img: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=800" },
-  { title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", desc: "Co-leading the branch's permanent logistics committee & SOPs.", img: "images/gallery/3.jpg" },
-  { title: "MoraXtreme 10.0", role: "Logistics Lead", desc: "Directed 24-hr continuous infrastructure & power delivery.", img: "https://images.unsplash.com/photo-1563841930606-67e2bce48b78?q=80&w=800" },
-  { title: "IEEE Open Week 2026", role: "Logistics Co-Lead", desc: "Managed 72-foot display & custom fabric merch production.", img: "https://images.unsplash.com/photo-1665035212282-3e117d618b36?q=80&w=800" },
-  { title: "RoboGames 2026 (IESL)", role: "Organizing Committee", desc: "Live-stream technical support and competition arena setup.", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800" },
-  { title: "SLIoT Challenge 2026", role: "Delegate Handling OC", desc: "End-to-end event execution workflows and VIP procurement.", img: "https://images.unsplash.com/photo-1722332998970-f2335db8ab6d?q=80&w=800" },
-  { title: "Hit the Grounds 2025", role: "Logistics Co-Lead", desc: "Operational setup and welcoming logistics for flagship orientation.", img: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800" },
-  { title: "Mora Foresight 3.0", role: "Logistics Member", desc: "Organized island-wide awareness sessions and Foresight Padura.", img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800" }
+  { title: "CSE Batch '23 Rep", role: "Department Representative", desc: "Primary student liaison for the 2023 CSE intake across semesters 4-6.", img: "images/volunteering/BatchRep.jpg" },
+  { title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", desc: "Co-leading the branch's permanent logistics committee & SOPs.", img: "images/volunteering/SB1.jpg" },
+  { title: "MoraXtreme 10.0", role: "Logistics Lead", desc: "Directed 24-hr continuous infrastructure & power delivery.", img: "images/volunteering/MoraXtreame1.jpg" },
+  { title: "IEEE Open Week 2026", role: "Logistics Co-Lead", desc: "Managed 72-foot display & custom fabric merch production.", img: "images/volunteering/OpenWeek.jpg" },
+  { title: "RoboGames 2026 (IESL)", role: "Organizing Committee", desc: "Live-stream technical support and competition arena setup.", img: "images/volunteering/RoboGames1.jpg" },
+  { title: "SLIoT Challenge 2026", role: "Delegate Handling OC", desc: "End-to-end event execution workflows and VIP procurement.", img: "images/volunteering/SLIOT1.jpg" },
+  { title: "Hit the Grounds 2025", role: "Logistics Co-Lead", desc: "Operational setup and welcoming logistics for flagship orientation.", img: "images/volunteering/HitTheGrounds1.jpg" },
+  { title: "Mora Foresight 3.0", role: "Logistics Member", desc: "Organized island-wide awareness sessions and Foresight Padura.", img: "images/volunteering/foresight1.jpg" }
 ];
 
 const galleryImages = [
@@ -251,7 +251,7 @@ export function Dashboard() {
                 <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Events Led</p>
               </div>
               <div>
-                <AnimatedCounter end={3} suffix="" />
+                <AnimatedCounter end={5} suffix="" />
                 <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Semesters</p>
               </div>
             </div>
@@ -412,7 +412,7 @@ export function Dashboard() {
                   <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Events Led</p>
                 </div>
                 <div>
-                  <AnimatedCounter end={3} suffix="" />
+                  <AnimatedCounter end={5} suffix="" />
                   <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Semesters</p>
                 </div>
               </div>
