@@ -66,6 +66,9 @@ export const ContactModal = ({ isOpen, onClose }: Omit<ModalProps, 'title' | 'ch
           email: formData.email,
           message: formData.message,
           _subject: `Portfolio message from ${formData.name}`,
+          _replyto: formData.email,
+          _template: 'table',
+          _captcha: 'false',
         }),
       });
       if (!res.ok) throw new Error('Request failed');
