@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, Github, Linkedin, Mail, Phone, Send } from 'lucide-react';
+import { X, ExternalLink, Github, Linkedin, Mail, Phone, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -51,6 +51,31 @@ const ModalWrapper = ({ isOpen, onClose, title, children, maxWidth = "max-w-[120
 
 // --- NEW CONTACT MODAL ---
 export const ContactModal = ({ isOpen, onClose }: Omit<ModalProps, 'title' | 'children'>) => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/ishakyaranhiru@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `Portfolio message from ${formData.name}`,
+        }),
+      });
+      if (!res.ok) throw new Error('Request failed');
+      setStatus('sent');
+      setFormData({ name: '', email: '', message: '' });
+    } catch {
+      setStatus('error');
+    }
+  };
+
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose} title="Contact Me" maxWidth="max-w-[1000px]">
       <div className="text-center mb-10">
@@ -114,23 +139,39 @@ export const ContactModal = ({ isOpen, onClose }: Omit<ModalProps, 'title' | 'ch
           <h3 className="text-lg font-bold text-white mb-2">Send a Message</h3>
           <p className="text-sm text-gray-400 mb-6">Have something to discuss? Let's talk.</p>
 
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <label className="text-xs font-medium text-gray-400 mb-1 block">Your Name</label>
-              <input type="text" placeholder="John Doe" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-green-500 transition-colors" />
+          {status === 'sent' ? (
+            <div className="flex flex-col items-center justify-center text-center py-10">
+              <CheckCircle2 size={40} className="text-green-400 mb-4" />
+              <p className="text-white font-semibold mb-1">Message sent!</p>
+              <p className="text-sm text-gray-400">Thanks for reaching out — I'll get back to you soon.</p>
+              <button onClick={() => setStatus('idle')} className="mt-6 text-xs text-green-400 font-bold uppercase tracking-widest hover:text-green-300 transition-colors">
+                Send another message
+              </button>
             </div>
-            <div>
-              <label className="text-xs font-medium text-gray-400 mb-1 block">Your Email</label>
-              <input type="email" placeholder="john@example.com" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-green-500 transition-colors" />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-gray-400 mb-1 block">Your Message</label>
-              <textarea rows={4} placeholder="Write your message here..." className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-green-500 transition-colors resize-none"></textarea>
-            </div>
-            <button className="w-full py-3.5 mt-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors flex justify-center items-center gap-2">
-              <Send size={18} /> Send Message
-            </button>
-          </form>
+          ) : (
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <div>
+                <label className="text-xs font-medium text-gray-400 mb-1 block">Your Name</label>
+                <input required type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="John Doe" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-green-500 transition-colors" />
+              </div>
+              <div>
+                <label className="text-xs font-medium text-gray-400 mb-1 block">Your Email</label>
+                <input required type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="john@example.com" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-green-500 transition-colors" />
+              </div>
+              <div>
+                <label className="text-xs font-medium text-gray-400 mb-1 block">Your Message</label>
+                <textarea required rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Write your message here..." className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-green-500 transition-colors resize-none"></textarea>
+              </div>
+              {status === 'error' && (
+                <div className="flex items-center gap-2 text-red-400 text-xs">
+                  <AlertCircle size={14} /> Something went wrong — please try again or email me directly.
+                </div>
+              )}
+              <button type="submit" disabled={status === 'sending'} className="w-full py-3.5 mt-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium rounded-xl transition-colors flex justify-center items-center gap-2">
+                <Send size={18} /> {status === 'sending' ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </ModalWrapper>
@@ -202,11 +243,11 @@ export const LeadershipModal = ({ isOpen, onClose, onItemClick }: Omit<ModalProp
 
 export const SkillsModal = ({ isOpen, onClose }: Omit<ModalProps, 'title' | 'children' | 'onItemClick'>) => {
   const skillCategories = [
-    { category: "Core Languages", icon: "💻", skills: ["Python", "Java", "JavaScript", "TypeScript", "Go", "C", "C++", "SQL", "Verilog"] },
+    { category: "Core Languages", icon: "💻", skills: ["Python", "Java", "JavaScript", "TypeScript", "SQL"] },
     { category: "Frontend Engineering", icon: "🎨", skills: ["React.js", "Next.js", "HTML5", "CSS3", "Tailwind CSS"] },
     { category: "Backend & APIs", icon: "🔧", skills: ["Node.js", "Express.js", "FastAPI", "NestJS", "REST API Design"] },
-    { category: "Cloud & Deployment", icon: "☁️", skills: ["Google Cloud Platform (GCP)", "AWS", "Vercel", "NGINX", "Ubuntu Linux", "Caddy TLS", "systemd"] },
-    { category: "Databases & Caching", icon: "🗄️", skills: ["MySQL", "PostgreSQL", "Redis", "MongoDB"] },
+    { category: "Cloud & Deployment", icon: "☁️", skills: ["Google Cloud Platform (GCP)", "Vercel", "NGINX", "Ubuntu Linux", "Caddy TLS", "systemd"] },
+    { category: "Databases & Caching", icon: "🗄️", skills: ["MySQL", "PostgreSQL", "Redis"] },
     { category: "Advanced Domains", icon: "🧠", skills: ["Digital Signal Processing (DSP)", "Machine Learning (XGBoost, Isolation Forests)", "Multi-Agentic Systems", "Hardware/IoT (ESP32, MQTT)"] },
     { category: "Security & Identity", icon: "🔐", skills: ["WSO2 Asgardeo", "OAuth 2.0", "OIDC with PKCE", "Backend-for-Frontend (BFF)", "JWT", "RFC 7662 Token Introspection"] },
     { category: "DevOps & Architecture", icon: "⚙️", skills: ["Git", "Kafka (Event-Driven Architecture)", "MLflow", "Microservices"] }
@@ -292,14 +333,17 @@ export const EngineeringModal = ({ isOpen, onClose, onItemClick }: Omit<ModalPro
       title: "Sonora AI", tags: ["Python", "FastAPI", "TypeScript", "Next.js", "GCP", "WSO2 Asgardeo", "Gemini"],
       desc: "AI-powered vocal production platform with genre-aware, microtonal-capable auto-tune.",
       longDesc: "A highly sophisticated artificial intelligence solution focused on advanced data processing and predictive capabilities for vocal production. Functions as a genre-aware 'auto-tune,' capable of both Western 12-tone tuning and Indian classical raga/microtonal tuning.",
-      overview: { type: "AI Platform", year: "2026", focus: "AI-Powered Audio DSP", role: "Full-Stack & AI Systems Engineer" },
+      overview: { type: "Personal Project", year: "2026", focus: "AI-Powered Audio DSP", role: "Full-Stack & AI Systems Engineer (Solo)" },
       contributions: [
         "Integrated Google Gemini to analyze vocal tracks alongside a target genre, dynamically generating structured, timestamped automation maps that drive block-based DSP mastering chains (compressor, reverb, EQ) across the song's evolving structure.",
         "Engineered robust backend AI pipelines using neural pitch tracking (CREPE), the WORLD vocoder for resynthesis, Demucs for neural source separation (karaoke/vocal extraction), and Essentia (MIR) for tonic/scale detection.",
         "Implemented a secure Backend-for-Frontend (BFF) pattern using OAuth2/OIDC with PKCE via WSO2 Asgardeo, validated via RFC 7662 token introspection, ensuring access tokens live strictly in httpOnly cookies.",
         "Provisioned and hardened a GCP Compute Engine VM (Ubuntu) running as a systemd service behind a Caddy reverse proxy for automatic HTTPS/TLS termination, communicating with a Vercel-hosted frontend."
       ],
-      img: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800"
+      github: "https://github.com/Sonora-AI",
+      link: "https://sonora-ai-pwa.vercel.app/",
+      img: "images/projects/sonora-1.jpg",
+      gallery: ["images/projects/sonora-1.jpg", "images/projects/sonora-2.jpg"]
     },
     {
       title: "PredictiveOps", tags: ["Go", "Python", "Kafka", "MLflow", "PostgreSQL", "FastAPI"],
@@ -324,7 +368,10 @@ export const EngineeringModal = ({ isOpen, onClose, onItemClick }: Omit<ModalPro
         "Engineered an instant rental feature utilizing Server-Sent Events (SSE) for live inventory updates.",
         "Implemented a custom Click-to-Verify WhatsApp authentication flow to prevent unsolicited message drops and ensure secure vendor-client interactions."
       ],
-      img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=800"
+      github: "https://github.com/sound-scout-dev",
+      link: "https://sound-scout-frontend.vercel.app/",
+      img: "images/projects/soundscout-1.jpg",
+      gallery: ["images/projects/soundscout-1.jpg", "images/projects/soundscout-2.jpg"]
     },
     {
       title: "Another Home", tags: ["Node.js", "MySQL", "WSO2 Asgardeo", "REST API"],
@@ -336,7 +383,9 @@ export const EngineeringModal = ({ isOpen, onClose, onItemClick }: Omit<ModalPro
         "Implemented enterprise-grade security and identity management using OAuth2/OIDC via WSO2 Asgardeo.",
         "Designed and implemented global API versioning and strict API contract integrations for future-proof scalability."
       ],
-      img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=800"
+      github: "https://github.com/another-home-dev",
+      img: "images/projects/anotherhome-1.jpg",
+      gallery: ["images/projects/anotherhome-1.jpg", "images/projects/anotherhome-2.jpg"]
     },
     {
       title: "SwiftDrop Flash Sales", tags: ["Node.js", "NGINX", "Redis", "MySQL", "Machine Learning"],
@@ -355,13 +404,14 @@ export const EngineeringModal = ({ isOpen, onClose, onItemClick }: Omit<ModalPro
       title: "Case Tracker Matara", tags: ["Full-Stack Web", "Vercel"],
       desc: "Specialized case tracking system for the Matara Court Complex.",
       longDesc: "A specialized, localized case tracking system customized exclusively for the Matara Court Complex to support highly sensitive legal tracking operations.",
-      overview: { type: "Client Project", year: "2025", focus: "Legal Operations Platform", role: "Full-Stack Developer" },
+      overview: { type: "Personal Project", year: "2025", focus: "Legal Operations Platform", role: "Full-Stack Developer (Solo)" },
       contributions: [
         "Designed and built the end-to-end case tracking system tailored to the Matara Court Complex's operational workflow.",
         "Handled end-to-end CI/CD and production deployment workflows via Vercel."
       ],
-      github: "https://github.com/hiru616/CaseTracker_Matara_Court_Complex.git",
-      img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800"
+      github: "https://github.com/hiru616/CaseTracker_Matara_Court_Complex",
+      link: "https://case-tracker-matara-court-complex-rhp98xxm7.vercel.app/",
+      img: "images/projects/casetracker-1.jpg"
     },
     {
       title: "SkyNest Hotel System", tags: ["Node.js", "MySQL", "React"],
@@ -380,7 +430,7 @@ export const EngineeringModal = ({ isOpen, onClose, onItemClick }: Omit<ModalPro
     { title: "IoT Hospital System", tags: ["IoT", "ESP32", "C++"], desc: "Chemical management tracking leveraging embedded controllers.", github: "https://github.com/hiru616/IOT_Health_System.git", img: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=800" },
     { title: "RPAL Interpreter", tags: ["Compilation", "C"], desc: "Implementation of a functional programming language interpreter.", github: "https://github.com/hiru616/RPAL-Interpreter.git", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800" },
     { title: "Stroke Prediction Model", tags: ["Data Science", "Kaggle"], desc: "Data science analysis utilizing patient telemetry metrics.", github: "https://www.kaggle.com/code/ishakyagamage/stroke-prediction", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800" },
-    { title: "ExpenseFlow", tags: ["Full-Stack", "Web App"], desc: "Personal expense tracking and financial visualization application.", img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800" },
+    { title: "ExpenseFlow", tags: ["Full-Stack", "Web App"], desc: "Personal expense tracking and financial visualization application.", github: "https://github.com/hiru616/ExpenseFlow", img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800" },
     { title: "IEEEXtreme 19.0", tags: ["Competitive Prog", "Algorithms"], desc: "Global competitor in the 24-hour IEEE coding competition.", github: "https://github.com/nilum2002/IEEE-Xtream19.git", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800" },
     { title: "SLIIT Micro Mouse", tags: ["Robotics", "Hardware"], desc: "Hardware and algorithm design for maze-solving robotics.", github: "https://github.com/thevinufernando/mm-micromouse.git", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800" },
     { title: "SLRC 2025", tags: ["Robotics", "Competition"], desc: "Participated in the Sri Lankan Robotics Challenge.", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800" }
