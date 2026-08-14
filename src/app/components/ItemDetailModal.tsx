@@ -6,6 +6,11 @@ export function ItemDetailModal({ item, onClose }: { item: any, onClose: () => v
     const [currentImg, setCurrentImg] = useState(0);
 
     const gallery = item?.gallery || (item?.img ? [item.img, item.img] : []);
+    // Only real project screenshots (which have a repo/live link) get the "show the whole
+    // screenshot" letterboxed treatment. Personal/event photos keep a full-bleed crop instead,
+    // optionally aimed via item.imgFocus (a CSS object-position value) so the subject stays in frame.
+    const isProjectScreenshot = Boolean(item?.github || item?.link);
+    const imgFocus = item?.imgFocus || 'center 25%';
 
     useEffect(() => {
         if (!item || gallery.length <= 1) return;
@@ -46,15 +51,19 @@ export function ItemDetailModal({ item, onClose }: { item: any, onClose: () => v
                         <X size={20} />
                     </button>
 
-                    {/* Left Side: Automated Image Gallery — full image always visible, letterboxed over a blurred fill */}
+                    {/* Left Side: Automated Image Gallery.
+                        Project screenshots show the whole image (letterboxed over a blurred fill)
+                        so UI text isn't cropped off. Personal/event photos stay full-bleed, cropped
+                        via imgFocus to keep the subject in frame — no letterbox borders. */}
                     <div className="w-full lg:w-1/2 h-72 sm:h-80 lg:h-full relative bg-black border-r border-white/10 overflow-hidden shrink-0">
-                        {/* blurred cover fill so letterboxed edges never show flat black */}
-                        <img
-                            src={gallery[currentImg]}
-                            alt=""
-                            aria-hidden="true"
-                            className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-40"
-                        />
+                        {isProjectScreenshot && (
+                            <img
+                                src={gallery[currentImg]}
+                                alt=""
+                                aria-hidden="true"
+                                className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-40"
+                            />
+                        )}
                         <AnimatePresence mode="wait">
                             <motion.img
                                 key={currentImg}
@@ -65,7 +74,10 @@ export function ItemDetailModal({ item, onClose }: { item: any, onClose: () => v
                                 src={gallery[currentImg]}
                                 alt={item.title}
                                 decoding="async"
-                                className="absolute inset-0 w-full h-full object-contain p-3"
+                                style={isProjectScreenshot ? undefined : { objectPosition: imgFocus }}
+                                className={isProjectScreenshot
+                                    ? "absolute inset-0 w-full h-full object-contain p-3"
+                                    : "absolute inset-0 w-full h-full object-cover"}
                             />
                         </AnimatePresence>
                         <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/70 to-transparent pointer-events-none"></div>

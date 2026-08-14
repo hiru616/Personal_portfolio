@@ -337,7 +337,7 @@ export function Dashboard() {
               </div>
             ))}
           </div>
-          <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsLeadershipOpen(true)} className="mt-4 w-full py-3.5 bg-white/10 active:bg-white/25 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em]">[ + View All 15 Experiences ]</motion.button>
+          <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsLeadershipOpen(true)} className="mt-4 w-full py-3.5 bg-black/85 backdrop-blur-2xl transform-gpu active:bg-black/60 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em] shadow-xl">[ + View All 15 Experiences ]</motion.button>
         </Reveal>
 
         {/* HACKATHONS & AWARDS */}
@@ -363,8 +363,10 @@ export function Dashboard() {
 
         {/* EVENT & PROJECT GALLERY — pinterest masonry */}
         <Reveal className="px-5 pb-16">
-          <h2 className="text-lg font-bold text-white mb-1">Event &amp; Project Gallery</h2>
-          <p className="text-sm text-gray-400 mb-4">Highlights from the last 3 semesters</p>
+          <div className="mb-4 bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-2xl px-5 py-4 shadow-xl">
+            <h2 className="text-lg font-bold text-white mb-1">Event &amp; Project Gallery</h2>
+            <p className="text-sm text-gray-300">Highlights from the last 3 semesters</p>
+          </div>
           <div className="columns-2 gap-3 [&>*]:mb-3 [&>*]:break-inside-avoid">
             {galleryImages.map((src, i) => (
               <img key={i} src={src} loading="lazy" decoding="async" className="w-full h-auto rounded-2xl border border-white/10" alt="" />
