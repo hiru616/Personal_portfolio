@@ -73,13 +73,16 @@ const topProjects = [
     title: "Sonora AI", tags: ["Python", "FastAPI", "Next.js", "GCP", "Gemini"],
     desc: "Genre-aware AI vocal production platform with DSP-driven auto-tune mastering.",
     longDesc: "A highly sophisticated artificial intelligence solution focused on advanced data processing and predictive capabilities for vocal production. Functions as a genre-aware 'auto-tune,' capable of both Western 12-tone tuning and Indian classical raga/microtonal tuning.",
-    overview: { type: "AI Platform", year: "2026", focus: "AI-Powered Audio DSP", role: "Full-Stack & AI Systems Engineer" },
+    overview: { type: "Personal Project", year: "2026", focus: "AI-Powered Audio DSP", role: "Full-Stack & AI Systems Engineer (Solo)" },
     contributions: [
       "Integrated Google Gemini to analyze vocal tracks against a target genre, generating timestamped automation maps that drive block-based DSP mastering chains.",
       "Engineered AI pipelines using neural pitch tracking (CREPE), WORLD vocoder resynthesis, Demucs source separation, and Essentia tonic/scale detection.",
       "Secured the platform with a BFF pattern using OAuth2/OIDC + PKCE via WSO2 Asgardeo and RFC 7662 token introspection."
     ],
-    img: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800"
+    github: "https://github.com/Sonora-AI",
+    link: "https://sonora-ai-pwa.vercel.app/",
+    img: "images/projects/sonora-1.jpg",
+    gallery: ["images/projects/sonora-1.jpg", "images/projects/sonora-2.jpg"]
   },
   {
     title: "PredictiveOps", tags: ["Go", "Python", "Kafka", "MLflow"],
@@ -104,7 +107,10 @@ const topProjects = [
       "Engineered an instant rental feature using Server-Sent Events (SSE) for live inventory updates.",
       "Implemented a custom Click-to-Verify WhatsApp authentication flow for secure vendor-client interactions."
     ],
-    img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=800"
+    github: "https://github.com/sound-scout-dev",
+    link: "https://sound-scout-frontend.vercel.app/",
+    img: "images/projects/soundscout-1.jpg",
+    gallery: ["images/projects/soundscout-1.jpg", "images/projects/soundscout-2.jpg"]
   }
 ];
 
@@ -168,7 +174,7 @@ const hackathonPlacements = [
 const aboutMeData = {
   title: "Ishakya Gamage", role: "Software Engineer & Logistics Lead", tags: ["University of Moratuwa", "Batch Representative", "Full-Stack Dev"],
   desc: "Undergraduate in Computer Science & Engineering at the University of Moratuwa. I specialize in building highly scalable full-stack systems and orchestrating massive technical events and hackathons.",
-  longDesc: "Beyond the code, I am deeply involved in student leadership as the CSE Batch '23 Rep and CSESS Events Committee member. When I'm not debugging C-compilers or managing NGINX instances, you can find me analyzing automotive specifications (like the Audi A3 Advanced Edition) or performing as a vocalist and stage actor.",
+  longDesc: "Most of my time goes into shipping end-to-end AI platforms like Sonora AI and SoundScout AI, and event-driven backend systems like PredictiveOps — architecting, building, and deploying every layer myself. Beyond the code, I'm deeply involved in student leadership as the CSE Batch '23 Rep and IEEE Student Branch logistics co-lead, and when I'm not shipping a project you'll find me performing as a vocalist and stage actor.",
   img: "/images/profile2.jpeg",
   gallery: [
     "images/profileGallery/1.jpeg",
