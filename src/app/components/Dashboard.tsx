@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, Mail, Download, Calendar, Terminal, Layers, Trophy } from 'lucide-react';
+import { Github, Mail, Download, Calendar, Terminal, Layers, Trophy, ChevronDown } from 'lucide-react';
 import { EngineeringModal, LeadershipModal, ContactModal, SkillsModal, HackathonsModal } from './Modals';
 import { ItemDetailModal } from './ItemDetailModal';
 
@@ -33,6 +33,19 @@ const cardHover = {
   y: -6,
   transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }
 };
+
+// --- MOBILE: scroll-triggered reveal wrapper ---
+const Reveal = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+  <motion.section
+    initial={{ opacity: 0, y: 32 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+    className={className}
+  >
+    {children}
+  </motion.section>
+);
 
 // --- ANIMATION COMPONENTS ---
 const TypewriterText = ({ text }: { text: string }) => {
@@ -115,14 +128,14 @@ const topProjects = [
 ];
 
 const logisticsEvents = [
-  { title: "CSE Batch '23 Rep", role: "Department Representative", desc: "Primary student liaison for the 2023 CSE intake across semesters 4-6.", img: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=800" },
-  { title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", desc: "Co-leading the branch's permanent logistics committee & SOPs.", img: "images/gallery/3.jpg" },
-  { title: "MoraXtreme 10.0", role: "Logistics Lead", desc: "Directed 24-hr continuous infrastructure & power delivery.", img: "https://images.unsplash.com/photo-1563841930606-67e2bce48b78?q=80&w=800" },
-  { title: "IEEE Open Week 2026", role: "Logistics Co-Lead", desc: "Managed 72-foot display & custom fabric merch production.", img: "https://images.unsplash.com/photo-1665035212282-3e117d618b36?q=80&w=800" },
-  { title: "RoboGames 2026 (IESL)", role: "Organizing Committee", desc: "Live-stream technical support and competition arena setup.", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800" },
-  { title: "SLIoT Challenge 2026", role: "Delegate Handling OC", desc: "End-to-end event execution workflows and VIP procurement.", img: "https://images.unsplash.com/photo-1722332998970-f2335db8ab6d?q=80&w=800" },
-  { title: "Hit the Grounds 2025", role: "Logistics Co-Lead", desc: "Operational setup and welcoming logistics for flagship orientation.", img: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800" },
-  { title: "Mora Foresight 3.0", role: "Logistics Member", desc: "Organized island-wide awareness sessions and Foresight Padura.", img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800" }
+  { title: "CSE Batch '23 Rep", role: "Department Representative", desc: "Primary student liaison for the 2023 CSE intake across semesters 4-6.", img: "images/volunteering/BatchRep.jpg" },
+  { title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", desc: "Co-leading the branch's permanent logistics committee & SOPs.", img: "images/volunteering/SB1.jpg" },
+  { title: "MoraXtreme 10.0", role: "Logistics Lead", desc: "Directed 24-hr continuous infrastructure & power delivery.", img: "images/volunteering/MoraXtreame1.jpg" },
+  { title: "IEEE Open Week 2026", role: "Logistics Co-Lead", desc: "Managed 72-foot display & custom fabric merch production.", img: "images/volunteering/OpenWeek.jpg" },
+  { title: "RoboGames 2026 (IESL)", role: "Organizing Committee", desc: "Live-stream technical support and competition arena setup.", img: "images/volunteering/RoboGames1.jpg" },
+  { title: "SLIoT Challenge 2026", role: "Delegate Handling OC", desc: "End-to-end event execution workflows and VIP procurement.", img: "images/volunteering/SLIOT1.jpg" },
+  { title: "Hit the Grounds 2025", role: "Logistics Co-Lead", desc: "Operational setup and welcoming logistics for flagship orientation.", img: "images/volunteering/HitTheGrounds1.jpg" },
+  { title: "Mora Foresight 3.0", role: "Logistics Member", desc: "Organized island-wide awareness sessions and Foresight Padura.", img: "images/volunteering/foresight1.jpg" }
 ];
 
 const galleryImages = [
@@ -207,10 +220,169 @@ export function Dashboard() {
   return (
     <div className="w-full min-h-screen text-white relative flex flex-col">
       <div className="fixed inset-0 w-full h-full z-0 bg-[#050505]">
-        <img src="/images/bg1.jpeg" className="w-full h-full object-cover opacity-70" alt="Background" />
+        <img src="/images/bg1.jpeg" className="w-full h-full object-cover object-[8%_center] md:object-center opacity-70" alt="Background" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto p-4 md:p-5 flex-1 flex flex-col overflow-hidden lg:translate-x-[clamp(24px,6vw,130px)]">
+      {/* ================= MOBILE EXPERIENCE (scrolling, revealed on scroll) ================= */}
+      <div className="md:hidden relative z-10 flex flex-col">
+
+        {/* HERO */}
+        <section className="min-h-[100dvh] flex flex-col items-center justify-center text-center px-6 py-20 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-24 h-24 rounded-full border-2 border-white/20 overflow-hidden bg-black mb-5 shadow-2xl">
+              <img src={aboutMeData.img} alt="Ishakya" className="w-full h-full object-cover" />
+            </div>
+            <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">Ishakya Gamage</h1>
+            <p className="text-green-400 font-bold uppercase tracking-widest text-xs mb-7 h-4">
+              <TypewriterText text="Software Engineer @ UoM CSE" />
+            </p>
+            <div className="flex gap-8 mb-9 bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-2xl px-7 py-4 shadow-2xl">
+              <div>
+                <AnimatedCounter end={12} suffix="+" />
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Projects</p>
+              </div>
+              <div>
+                <AnimatedCounter end={13} suffix="+" />
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Events Led</p>
+              </div>
+              <div>
+                <AnimatedCounter end={5} suffix="" />
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Semesters</p>
+              </div>
+            </div>
+            <div className="flex gap-3 w-full max-w-xs">
+              <motion.a whileTap={{ scale: 0.96 }} href="/cv.pdf" download className="flex-1 py-3.5 bg-black/70 backdrop-blur-2xl transform-gpu active:bg-black/50 text-white text-sm rounded-xl transition-colors border border-white/15 flex justify-center items-center gap-2 shadow-xl">
+                <Download size={16} /> CV
+              </motion.a>
+              <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsContactOpen(true)} className="flex-1 py-3.5 bg-white text-black font-medium text-sm rounded-xl active:bg-gray-200 transition-colors flex justify-center items-center gap-2 shadow-xl">
+                <Mail size={16} /> Contact
+              </motion.button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 8, 0] }}
+            transition={{ opacity: { delay: 1, duration: 0.6 }, y: { delay: 1, duration: 1.6, repeat: Infinity, ease: 'easeInOut' } }}
+            className="absolute bottom-8 flex flex-col items-center gap-1 text-gray-500"
+          >
+            <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+            <ChevronDown size={16} />
+          </motion.div>
+        </section>
+
+        {/* ABOUT */}
+        <Reveal className="px-5 pb-14">
+          <div className="bg-black/85 backdrop-blur-2xl transform-gpu rounded-3xl border border-white/10 p-6 shadow-2xl" onClick={() => setDeepDiveItem(aboutMeData)}>
+            <h2 className="text-white font-bold text-lg mb-3">About Me</h2>
+            <p className="text-gray-300 text-sm leading-relaxed">{aboutMeData.desc}</p>
+            <p className="text-green-400 text-xs font-bold mt-4 tracking-widest uppercase">Tap for full profile</p>
+          </div>
+        </Reveal>
+
+        {/* SOFTWARE & SYSTEMS — pinterest masonry */}
+        <Reveal className="px-5 pb-14">
+          <h2 className="flex items-center gap-2 text-lg font-bold text-white mb-4">
+            <Terminal className="text-white/70" size={20} /> Software &amp; Systems
+          </h2>
+          <div className="columns-2 gap-3 [&>*]:mb-3 [&>*]:break-inside-avoid">
+            {topProjects.map((proj, i) => (
+              <div key={i} onClick={() => setDeepDiveItem(proj)} className="rounded-2xl overflow-hidden bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 active:scale-[0.97] transition-transform shadow-xl">
+                <img src={proj.img} loading="lazy" decoding="async" className="w-full h-auto block" alt={proj.title} />
+                <div className="p-3">
+                  <h3 className="text-white font-semibold text-sm leading-tight">{proj.title}</h3>
+                  <p className="text-[10px] text-gray-400 font-mono mt-1">{proj.tags.slice(0, 2).join(' · ')}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-3xl p-5 shadow-2xl">
+            <h3 className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-3 flex items-center gap-2">
+              <Layers size={14} className="text-green-400" /> Core Stack
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {techStackDetails.map((tech) => (
+                <span key={tech.name} className="px-3 py-1.5 bg-white/15 border border-white/30 rounded-lg text-[11px] text-white font-mono font-semibold">
+                  {tech.name}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-5 flex gap-3">
+              <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsEngineeringOpen(true)} className="flex-1 py-3.5 bg-white/10 active:bg-white/25 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em]">[ + Projects ]</motion.button>
+              <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsSkillsOpen(true)} className="flex-1 py-3.5 bg-white/10 active:bg-white/25 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em]">[ + Full Arsenal ]</motion.button>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* LOGISTICS TIMELINE */}
+        <Reveal className="px-5 pb-14">
+          <h2 className="flex items-center gap-2 text-lg font-bold text-white mb-4">
+            <Calendar className="text-white/70" size={20} /> Logistics Timeline
+          </h2>
+          <div className="space-y-2.5">
+            {logisticsEvents.map((evt, i) => (
+              <div key={i} onClick={() => setDeepDiveItem(evt)} className="flex items-center gap-3 bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-2xl p-3 active:scale-[0.98] transition-transform shadow-xl">
+                <img src={evt.img} loading="lazy" decoding="async" className="w-14 h-14 rounded-xl object-cover shrink-0" alt={evt.title} />
+                <div className="min-w-0">
+                  <h3 className="text-white text-sm font-bold truncate">{evt.title}</h3>
+                  <p className="text-xs text-gray-400 truncate">{evt.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsLeadershipOpen(true)} className="mt-4 w-full py-3.5 bg-black/85 backdrop-blur-2xl transform-gpu active:bg-black/60 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em] shadow-xl">[ + View All 15 Experiences ]</motion.button>
+        </Reveal>
+
+        {/* HACKATHONS & AWARDS */}
+        <Reveal className="px-5 pb-14">
+          <div onClick={() => setIsHackathonsOpen(true)} className="bg-black/85 backdrop-blur-2xl transform-gpu rounded-3xl p-6 border border-white/10 active:scale-[0.98] transition-transform shadow-2xl">
+            <h2 className="flex items-center gap-2 text-lg font-bold text-white mb-4">
+              <Trophy className="text-white/70" size={20} /> Hackathons &amp; Awards
+            </h2>
+            <div className="space-y-3">
+              {hackathonPlacements.map((p, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="text-xl leading-none">{p.icon}</span>
+                  <div>
+                    <p className="text-white text-sm font-semibold leading-tight">{p.title}</p>
+                    <p className="text-gray-400 text-xs mt-0.5">{p.event}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-green-400 text-xs font-bold uppercase tracking-widest mt-4 pt-4 border-t border-white/10">[ View Full Record ]</p>
+          </div>
+        </Reveal>
+
+        {/* EVENT & PROJECT GALLERY — pinterest masonry */}
+        <Reveal className="px-5 pb-16">
+          <div className="mb-4 bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-2xl px-5 py-4 shadow-xl">
+            <h2 className="text-lg font-bold text-white mb-1">Event &amp; Project Gallery</h2>
+            <p className="text-sm text-gray-300">Highlights from the last 3 semesters</p>
+          </div>
+          <div className="columns-2 gap-3 [&>*]:mb-3 [&>*]:break-inside-avoid">
+            {galleryImages.map((src, i) => (
+              <img key={i} src={src} loading="lazy" decoding="async" className="w-full h-auto rounded-2xl border border-white/10" alt="" />
+            ))}
+          </div>
+        </Reveal>
+
+        <footer className="pb-10 flex justify-center">
+          <p className="text-xs text-gray-300 tracking-widest bg-black/85 backdrop-blur-2xl border border-white/10 rounded-full px-5 py-2.5 shadow-xl">
+            © {new Date().getFullYear()} Ishakya Gamage · <span className="text-white font-medium">@hiru616</span>
+          </p>
+        </footer>
+      </div>
+
+      {/* ================= DESKTOP EXPERIENCE (single-viewport bento grid) ================= */}
+      <div className="hidden md:flex relative z-10 w-full max-w-[1400px] mx-auto p-4 md:p-5 flex-1 flex-col overflow-hidden lg:translate-x-[clamp(24px,6vw,130px)]">
 
         {/* THIS IS THE PARENT GRID MOTION DIV */}
         <motion.div
@@ -240,7 +412,7 @@ export function Dashboard() {
                   <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Events Led</p>
                 </div>
                 <div>
-                  <AnimatedCounter end={3} suffix="" />
+                  <AnimatedCounter end={5} suffix="" />
                   <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Semesters</p>
                 </div>
               </div>

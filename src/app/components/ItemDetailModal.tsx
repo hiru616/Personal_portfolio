@@ -6,6 +6,11 @@ export function ItemDetailModal({ item, onClose }: { item: any, onClose: () => v
     const [currentImg, setCurrentImg] = useState(0);
 
     const gallery = item?.gallery || (item?.img ? [item.img, item.img] : []);
+    // Only real project screenshots (which have a repo/live link) get the "show the whole
+    // screenshot" letterboxed treatment. Personal/event photos keep a full-bleed crop instead,
+    // optionally aimed via item.imgFocus (a CSS object-position value) so the subject stays in frame.
+    const isProjectScreenshot = Boolean(item?.github || item?.link);
+    const imgFocus = item?.imgFocus || 'center 25%';
 
     useEffect(() => {
         if (!item || gallery.length <= 1) return;
@@ -46,25 +51,39 @@ export function ItemDetailModal({ item, onClose }: { item: any, onClose: () => v
                         <X size={20} />
                     </button>
 
-                    {/* Left Side: Automated Image Gallery */}
-                    <div className="w-full lg:w-1/2 h-64 lg:h-full relative bg-black/50 border-r border-white/10">
+                    {/* Left Side: Automated Image Gallery.
+                        Project screenshots show the whole image (letterboxed over a blurred fill)
+                        so UI text isn't cropped off. Personal/event photos stay full-bleed, cropped
+                        via imgFocus to keep the subject in frame — no letterbox borders. */}
+                    <div className="w-full lg:w-1/2 h-72 sm:h-80 lg:h-full relative bg-black border-r border-white/10 overflow-hidden shrink-0">
+                        {isProjectScreenshot && (
+                            <img
+                                src={gallery[currentImg]}
+                                alt=""
+                                aria-hidden="true"
+                                className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-40"
+                            />
+                        )}
                         <AnimatePresence mode="wait">
                             <motion.img
                                 key={currentImg}
-                                initial={{ opacity: 0, scale: 1.05 }}
+                                initial={{ opacity: 0, scale: 1.02 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.8 }}
                                 src={gallery[currentImg]}
                                 alt={item.title}
                                 decoding="async"
-                                className="absolute inset-0 w-full h-full object-cover opacity-80"
+                                style={isProjectScreenshot ? undefined : { objectPosition: imgFocus }}
+                                className={isProjectScreenshot
+                                    ? "absolute inset-0 w-full h-full object-contain p-3"
+                                    : "absolute inset-0 w-full h-full object-cover"}
                             />
                         </AnimatePresence>
-                        <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/80 via-transparent to-transparent"></div>
+                        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/70 to-transparent pointer-events-none"></div>
 
                         {gallery.length > 1 && (
-                            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
+                            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
                                 {gallery.map((_, idx) => (
                                     <div key={idx} className={`w-2 h-2 rounded-full transition-all ${idx === currentImg ? 'bg-green-400 w-6' : 'bg-white/30'}`} />
                                 ))}
@@ -76,7 +95,7 @@ export function ItemDetailModal({ item, onClose }: { item: any, onClose: () => v
                     <div className="w-full lg:w-1/2 p-8 lg:p-12 overflow-y-auto custom-scrollbar flex flex-col bg-transparent">
 
                         <button onClick={onClose} className="text-gray-400 hover:text-white flex items-center gap-2 text-sm mb-6 w-fit transition-colors">
-                            ← Back to Dashboard
+                            ← Back
                         </button>
 
                         <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight leading-tight">{item.title}</h1>
