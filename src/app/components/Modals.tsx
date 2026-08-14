@@ -231,7 +231,7 @@ export const LeadershipModal = ({ isOpen, onClose, onItemClick }: Omit<ModalProp
               <p className="text-gray-500 text-[11px] font-mono mb-3">{exp.period}</p>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">{exp.desc}</p>
               <button
-                onClick={() => { onClose(); onItemClick && onItemClick(exp); }}
+                onClick={() => onItemClick && onItemClick(exp)}
                 className="mt-auto w-full py-3 bg-white/5 hover:bg-white/20 border border-white/10 rounded-xl text-sm text-white font-medium transition-all"
               >
                 More Details
@@ -456,7 +456,7 @@ export const EngineeringModal = ({ isOpen, onClose, onItemClick }: Omit<ModalPro
               </div>
               <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 mb-6">{p.desc}</p>
               <button
-                onClick={() => { onClose(); onItemClick && onItemClick(p); }}
+                onClick={() => onItemClick && onItemClick(p)}
                 className="mt-auto w-full py-3 bg-white/5 hover:bg-white/20 border border-white/10 rounded-xl text-sm text-white font-medium transition-all"
               >
                 More Details

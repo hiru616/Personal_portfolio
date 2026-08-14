@@ -241,7 +241,7 @@ export function Dashboard() {
             <p className="text-green-400 font-bold uppercase tracking-widest text-xs mb-7 h-4">
               <TypewriterText text="Software Engineer @ UoM CSE" />
             </p>
-            <div className="flex gap-8 mb-9 bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl px-7 py-4">
+            <div className="flex gap-8 mb-9 bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-2xl px-7 py-4 shadow-2xl">
               <div>
                 <AnimatedCounter end={12} suffix="+" />
                 <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Projects</p>
@@ -256,10 +256,10 @@ export function Dashboard() {
               </div>
             </div>
             <div className="flex gap-3 w-full max-w-xs">
-              <motion.a whileTap={{ scale: 0.96 }} href="/cv.pdf" download className="flex-1 py-3.5 bg-white/10 active:bg-white/20 text-white text-sm rounded-xl transition-colors border border-white/10 flex justify-center items-center gap-2">
+              <motion.a whileTap={{ scale: 0.96 }} href="/cv.pdf" download className="flex-1 py-3.5 bg-black/70 backdrop-blur-2xl transform-gpu active:bg-black/50 text-white text-sm rounded-xl transition-colors border border-white/15 flex justify-center items-center gap-2 shadow-xl">
                 <Download size={16} /> CV
               </motion.a>
-              <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsContactOpen(true)} className="flex-1 py-3.5 bg-white text-black font-medium text-sm rounded-xl active:bg-gray-200 transition-colors flex justify-center items-center gap-2">
+              <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsContactOpen(true)} className="flex-1 py-3.5 bg-white text-black font-medium text-sm rounded-xl active:bg-gray-200 transition-colors flex justify-center items-center gap-2 shadow-xl">
                 <Mail size={16} /> Contact
               </motion.button>
             </div>
@@ -278,7 +278,7 @@ export function Dashboard() {
 
         {/* ABOUT */}
         <Reveal className="px-5 pb-14">
-          <div className="bg-black/80 backdrop-blur-xl transform-gpu rounded-3xl border border-white/10 p-6" onClick={() => setDeepDiveItem(aboutMeData)}>
+          <div className="bg-black/85 backdrop-blur-2xl transform-gpu rounded-3xl border border-white/10 p-6 shadow-2xl" onClick={() => setDeepDiveItem(aboutMeData)}>
             <h2 className="text-white font-bold text-lg mb-3">About Me</h2>
             <p className="text-gray-300 text-sm leading-relaxed">{aboutMeData.desc}</p>
             <p className="text-green-400 text-xs font-bold mt-4 tracking-widest uppercase">Tap for full profile</p>
@@ -292,7 +292,7 @@ export function Dashboard() {
           </h2>
           <div className="columns-2 gap-3 [&>*]:mb-3 [&>*]:break-inside-avoid">
             {topProjects.map((proj, i) => (
-              <div key={i} onClick={() => setDeepDiveItem(proj)} className="rounded-2xl overflow-hidden bg-black/80 backdrop-blur-xl transform-gpu border border-white/10 active:scale-[0.97] transition-transform">
+              <div key={i} onClick={() => setDeepDiveItem(proj)} className="rounded-2xl overflow-hidden bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 active:scale-[0.97] transition-transform shadow-xl">
                 <img src={proj.img} loading="lazy" decoding="async" className="w-full h-auto block" alt={proj.title} />
                 <div className="p-3">
                   <h3 className="text-white font-semibold text-sm leading-tight">{proj.title}</h3>
@@ -302,7 +302,7 @@ export function Dashboard() {
             ))}
           </div>
 
-          <div className="mt-5">
+          <div className="mt-5 bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-3xl p-5 shadow-2xl">
             <h3 className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-3 flex items-center gap-2">
               <Layers size={14} className="text-green-400" /> Core Stack
             </h3>
@@ -313,11 +313,11 @@ export function Dashboard() {
                 </span>
               ))}
             </div>
-          </div>
 
-          <div className="mt-5 flex gap-3">
-            <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsEngineeringOpen(true)} className="flex-1 py-3.5 bg-white/10 active:bg-white/25 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em]">[ + Projects ]</motion.button>
-            <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsSkillsOpen(true)} className="flex-1 py-3.5 bg-white/10 active:bg-white/25 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em]">[ + Full Arsenal ]</motion.button>
+            <div className="mt-5 flex gap-3">
+              <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsEngineeringOpen(true)} className="flex-1 py-3.5 bg-white/10 active:bg-white/25 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em]">[ + Projects ]</motion.button>
+              <motion.button whileTap={{ scale: 0.96 }} onClick={() => setIsSkillsOpen(true)} className="flex-1 py-3.5 bg-white/10 active:bg-white/25 border border-white/30 rounded-xl text-xs text-white font-extrabold uppercase tracking-[0.15em]">[ + Full Arsenal ]</motion.button>
+            </div>
           </div>
         </Reveal>
 
@@ -328,7 +328,7 @@ export function Dashboard() {
           </h2>
           <div className="space-y-2.5">
             {logisticsEvents.map((evt, i) => (
-              <div key={i} onClick={() => setDeepDiveItem(evt)} className="flex items-center gap-3 bg-black/80 backdrop-blur-xl transform-gpu border border-white/10 rounded-2xl p-3 active:scale-[0.98] transition-transform">
+              <div key={i} onClick={() => setDeepDiveItem(evt)} className="flex items-center gap-3 bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-2xl p-3 active:scale-[0.98] transition-transform shadow-xl">
                 <img src={evt.img} loading="lazy" decoding="async" className="w-14 h-14 rounded-xl object-cover shrink-0" alt={evt.title} />
                 <div className="min-w-0">
                   <h3 className="text-white text-sm font-bold truncate">{evt.title}</h3>
@@ -342,7 +342,7 @@ export function Dashboard() {
 
         {/* HACKATHONS & AWARDS */}
         <Reveal className="px-5 pb-14">
-          <div onClick={() => setIsHackathonsOpen(true)} className="bg-black/80 backdrop-blur-xl transform-gpu rounded-3xl p-6 border border-white/10 active:scale-[0.98] transition-transform">
+          <div onClick={() => setIsHackathonsOpen(true)} className="bg-black/85 backdrop-blur-2xl transform-gpu rounded-3xl p-6 border border-white/10 active:scale-[0.98] transition-transform shadow-2xl">
             <h2 className="flex items-center gap-2 text-lg font-bold text-white mb-4">
               <Trophy className="text-white/70" size={20} /> Hackathons &amp; Awards
             </h2>
@@ -372,9 +372,9 @@ export function Dashboard() {
           </div>
         </Reveal>
 
-        <footer className="pb-8 text-center">
-          <p className="text-xs text-gray-500 tracking-widest">
-            © {new Date().getFullYear()} Ishakya Gamage · <span className="text-gray-400">@hiru616</span>
+        <footer className="pb-10 flex justify-center">
+          <p className="text-xs text-gray-300 tracking-widest bg-black/85 backdrop-blur-2xl border border-white/10 rounded-full px-5 py-2.5 shadow-xl">
+            © {new Date().getFullYear()} Ishakya Gamage · <span className="text-white font-medium">@hiru616</span>
           </p>
         </footer>
       </div>
