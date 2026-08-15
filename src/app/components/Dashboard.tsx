@@ -128,14 +128,94 @@ const topProjects = [
 ];
 
 const logisticsEvents = [
-  { title: "CSE Batch '23 Rep", role: "Department Representative", desc: "Primary student liaison for the 2023 CSE intake across semesters 4-6.", img: "images/volunteering/BatchRep.jpg" },
-  { title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", desc: "Co-leading the branch's permanent logistics committee & SOPs.", img: "images/volunteering/SB1.jpg" },
-  { title: "MoraXtreme 10.0", role: "Logistics Lead", desc: "Directed 24-hr continuous infrastructure & power delivery.", img: "images/volunteering/MoraXtreame1.jpg" },
-  { title: "IEEE Open Week 2026", role: "Logistics Co-Lead", desc: "Managed 72-foot display & custom fabric merch production.", img: "images/volunteering/OpenWeekPhoto.jpg" },
-  { title: "RoboGames 2026 (IESL)", role: "Organizing Committee", desc: "Live-stream technical support and competition arena setup.", img: "images/volunteering/RoboGames1.jpg" },
-  { title: "SLIoT Challenge 2026", role: "Delegate Handling OC", desc: "End-to-end event execution workflows and VIP procurement.", img: "images/volunteering/SLIOT1.jpg" },
-  { title: "Hit the Grounds 2025", role: "Logistics Co-Lead", desc: "Operational setup and welcoming logistics for flagship orientation.", img: "images/volunteering/HitTheGrounds1.jpg" },
-  { title: "Mora Foresight 3.0", role: "Logistics Member", desc: "Organized island-wide awareness sessions and Foresight Padura.", img: "images/volunteering/foresight1.jpg" }
+  {
+    title: "CSE Batch '23 Rep", role: "Department Representative", period: "Jan 2026 – Present · 8 mos",
+    desc: "Primary student liaison for the 2023 CSE intake across semesters 4-6.",
+    longDesc: "Serve as the primary academic liaison between the student body and faculty administration, representing the full 2023 CSE intake across semesters 4, 5, and 6.",
+    contributions: [
+      "Act as the core liaison between the student body and faculty administration to coordinate academic schedules, deadlines, and student welfare.",
+      "Manage batch-wide projects, cross-cohort communications, and logistical tracking for major student initiatives.",
+      "Advocate for student welfare on rescheduled sessions and other academic-schedule disputes."
+    ],
+    img: "images/volunteering/BatchRep.jpg"
+  },
+  {
+    title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", period: "Jan 2026 – Present · 8 mos",
+    desc: "Co-leading the branch's permanent logistics committee & SOPs.",
+    longDesc: "Co-lead the permanent logistics committee for the university's IEEE Student Branch, the standing body responsible for inventory, vendor relationships, and operational continuity across every branch event.",
+    contributions: [
+      "Supervise critical inventory, vendor databases, and operational frameworks for the student branch year-round.",
+      "Delegate tasks and mentor junior volunteer committees on execution.",
+      "Establish and maintain standard operating procedures (SOPs) for all branch events, so processes outlive any single event cycle."
+    ],
+    gallery: ["images/volunteering/SB1.jpg", "images/volunteering/SB2.jpg"], img: "images/volunteering/SB1.jpg"
+  },
+  {
+    title: "MoraXtreme 10.0", role: "Logistics Lead", period: "Oct 2025 – Jan 2026 · 4 mos",
+    desc: "Directed 24-hr continuous infrastructure & power delivery.",
+    longDesc: "Spearheaded the physical infrastructure and timeline execution for MoraXtreme 10.0, the IEEE Student Branch's flagship hackathon and the university's official practice ground for the global IEEEXtreme competition.",
+    contributions: [
+      "Directed continuous, 24-hour on-site infrastructure and power delivery for the full duration of the hackathon.",
+      "Owned timeline execution across the event, keeping every phase — setup, competition, teardown — on schedule.",
+      "Positioned the event as the practice ground for IEEEXtreme, mirroring that competition's real operational demands."
+    ],
+    gallery: ["images/volunteering/MoraXtreame1.jpg", "images/volunteering/MoraXtreame2.jpg"], img: "images/volunteering/MoraXtreame1.jpg"
+  },
+  {
+    title: "IEEE Open Week 2026", role: "Logistics Co-Lead", period: "Mar 2026 – May 2026 · 3 mos",
+    desc: "Managed 72-foot display & custom fabric merch production.",
+    longDesc: "Co-led the logistics committee for the flagship IEEE Open Week, directing overall event operations and massive physical infrastructure setups across the multi-day showcase.",
+    contributions: [
+      "Directed large-scale venue layouts and end-to-end event operations for the flagship IEEE showcase.",
+      "Oversaw installation of a 72-foot long visual display as the event's centerpiece.",
+      "Managed the end-to-end production pipeline for custom baby crocodile pique fabric merchandise, from sourcing to distribution."
+    ],
+    img: "images/volunteering/OpenWeekPhoto.jpg"
+  },
+  {
+    title: "RoboGames 2026 (IESL)", role: "Organizing Committee", period: "Apr 2026 · 1 mo",
+    desc: "Live-stream technical support and competition arena setup.",
+    longDesc: "Contributed to high-stakes operational planning for the Institution of Engineers Sri Lanka's national robotics competition, spanning both pre-event prep and live competition-day execution.",
+    contributions: [
+      "Contributed to high-stakes operational planning ahead of the national robotics competition.",
+      "Managed live-stream technical support on competition day so remote audiences could follow every match.",
+      "Engineered the technical arena setup where the robots actually competed."
+    ],
+    gallery: ["images/volunteering/RoboGames1.jpg", "images/volunteering/RoboGames2.jpg"], img: "images/volunteering/RoboGames1.jpg"
+  },
+  {
+    title: "SLIoT Challenge 2026", role: "Delegate Handling OC", period: "Jan 2026 – Apr 2026 · 4 mos",
+    desc: "End-to-end event execution workflows and VIP procurement.",
+    longDesc: "Managed end-to-end communications, registration verification, and hospitality for national-level contestants across both University and Open categories of the SLIoT Challenge.",
+    contributions: [
+      "Managed end-to-end communications and registration verification for contestants across both University and Open categories.",
+      "Owned hospitality logistics for national-level contestants throughout the competition period.",
+      "Served as the primary point of contact and handler for top tech industry professionals, expert judges, and VIP delegates."
+    ],
+    gallery: ["images/volunteering/SLIOT1.jpg", "images/volunteering/SLIOT2.jpg"], img: "images/volunteering/SLIOT1.jpg"
+  },
+  {
+    title: "Hit the Grounds 2025", role: "Logistics Co-Lead", period: "Nov 2025 – Jan 2026 · 3 mos",
+    desc: "Operational setup and welcoming logistics for flagship orientation.",
+    longDesc: "Co-led comprehensive logistical workflows for the university's flagship CSE orientation program, from operational setup through to welcoming logistics on the day.",
+    contributions: [
+      "Co-led comprehensive logistical workflows across the full orientation program.",
+      "Assisted with strategic publicity campaigns to drive turnout among incoming students.",
+      "Directed on-the-ground operational setup and welcoming logistics for arriving participants."
+    ],
+    gallery: ["images/volunteering/HitTheGrounds1.jpg", "images/volunteering/HitTheGrounds2.jpg"], img: "images/volunteering/HitTheGrounds1.jpg"
+  },
+  {
+    title: "Mora Foresight 3.0", role: "Logistics Member", period: "Feb 2025 – Aug 2025 · 7 mos",
+    desc: "Organized island-wide awareness sessions and Foresight Padura.",
+    longDesc: "Organized and conducted island-wide school awareness sessions to promote technical literacy, then led logistics for the flagship 3-day residential bootcamp and its dedicated cultural segment.",
+    contributions: [
+      "Organized and conducted island-wide school awareness sessions to promote technical literacy and event engagement.",
+      "Coordinated day-to-day event operations, resource management, and volunteer tracking for the main 3-day residential program.",
+      "Planned and executed the specialized logistics for 'Foresight Padura,' the event's dedicated cultural and musical segment."
+    ],
+    gallery: ["images/volunteering/foresight1.jpg", "images/volunteering/foresight2.jpg"], img: "images/volunteering/foresight1.jpg"
+  }
 ];
 
 const galleryImages = [
