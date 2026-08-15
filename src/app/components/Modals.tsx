@@ -194,27 +194,176 @@ const itemVariants = {
 export const LeadershipModal = ({ isOpen, onClose, onItemClick }: Omit<ModalProps, 'title' | 'children'>) => {
   const experiences = [
     // Academic Representation & Student Leadership
-    { title: "CSE Batch '23 Rep", role: "Department Representative", period: "Jan 2026 – Present", desc: "Primary student leader and representative for the 2023 CSE intake across semesters 4, 5, and 6.", longDesc: "Serve as the primary academic liaison between the student body and faculty administration — coordinating academic schedules, managing strict deadlines including rescheduled sessions, and advocating for student welfare. Manage batch-wide projects, cross-cohort communications, and logistical tracking for major student initiatives.", img: "images/volunteering/BatchRep.jpg" },
+    {
+      title: "CSE Batch '23 Rep", role: "Department Representative", period: "Jan 2026 – Present · 8 mos",
+      desc: "Primary student leader and representative for the 2023 CSE intake across semesters 4, 5, and 6.",
+      longDesc: "Serve as the primary academic liaison between the student body and faculty administration, representing the full 2023 CSE intake across semesters 4, 5, and 6.",
+      contributions: [
+        "Act as the core liaison between the student body and faculty administration to coordinate academic schedules, deadlines, and student welfare.",
+        "Manage batch-wide projects, cross-cohort communications, and logistical tracking for major student initiatives.",
+        "Advocate for student welfare on rescheduled sessions and other academic-schedule disputes."
+      ],
+      img: "images/volunteering/BatchRep.jpg"
+    },
 
     // Logistics, Operations & Infrastructure
-    { title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", period: "Jan 2026 – Present", desc: "Co-leading the branch's permanent logistics committee overseeing inventory, vendors, and SOPs.", longDesc: "Currently co-lead the permanent logistics committee for the university's IEEE branch, supervising critical inventory, vendor databases, and operational frameworks. Delegate tasks and mentor junior volunteer committees to establish and maintain standard operating procedures (SOPs) for all branch events.", gallery: ["images/volunteering/SB1.jpg", "images/volunteering/SB2.jpg"], img: "images/volunteering/SB1.jpg" },
-    { title: "IEEE Open Week 2026", role: "Logistics Committee Co-Lead", period: "Mar 2026 – May 2026", desc: "Managed end-to-end execution, large-scale venue layouts, and logistics.", longDesc: "Co-led the logistics committee for the flagship IEEE Open Week, directing overall event operations and massive physical infrastructure setups — including overseeing the installation of a 72-foot long visual display and managing the end-to-end production pipeline for custom baby crocodile pique fabric merchandise.", img: "images/volunteering/OpenWeek.jpg" },
-    { title: "MoraXtreme 10.0", role: "Logistics Committee Lead", period: "Oct 2025 – Jan 2026", desc: "Directed 24-hr continuous infrastructure for the flagship hackathon.", longDesc: "Spearheaded the physical infrastructure and timeline execution for MoraXtreme 10.0, a flagship 24-hour hackathon serving as the ultimate practice ground for the global IEEEXtreme competition.", gallery: ["images/volunteering/MoraXtreame1.jpg", "images/volunteering/MoraXtreame2.jpg"], img: "images/volunteering/MoraXtreame1.jpg" },
-    { title: "RoboGames 2026 (IESL)", role: "Organizing Committee Member", period: "Apr 2026", desc: "Contributed to operational planning, live-stream support, and technical arena setup.", longDesc: "Contributed to high-stakes operational planning, managed live-stream technical support on competition day, and engineered the technical arena setup for the national robotics competition.", gallery: ["images/volunteering/RoboGames1.jpg", "images/volunteering/RoboGames2.jpg"], img: "images/volunteering/RoboGames1.jpg" },
-    { title: "Hit the Grounds 2025", role: "Logistics Committee Co-Lead", period: "Nov 2025 – Jan 2026", desc: "Directed operational setup and welcoming logistics for the CSE orientation.", longDesc: "Co-led comprehensive logistical workflows and assisted with strategic publicity campaigns for the university's flagship orientation program.", gallery: ["images/volunteering/HitTheGrounds1.jpg", "images/volunteering/HitTheGrounds2.jpg"], img: "images/volunteering/HitTheGrounds1.jpg" },
+    {
+      title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", period: "Jan 2026 – Present · 8 mos",
+      desc: "Co-leading the branch's permanent logistics committee overseeing inventory, vendors, and SOPs.",
+      longDesc: "Co-lead the permanent logistics committee for the university's IEEE Student Branch, the standing body responsible for inventory, vendor relationships, and operational continuity across every branch event.",
+      contributions: [
+        "Supervise critical inventory, vendor databases, and operational frameworks for the student branch year-round.",
+        "Delegate tasks and mentor junior volunteer committees on execution.",
+        "Establish and maintain standard operating procedures (SOPs) for all branch events, so processes outlive any single event cycle."
+      ],
+      gallery: ["images/volunteering/SB1.jpg", "images/volunteering/SB2.jpg"], img: "images/volunteering/SB1.jpg"
+    },
+    {
+      title: "IEEE Open Week 2026", role: "Logistics Committee Co-Lead", period: "Mar 2026 – May 2026 · 3 mos",
+      desc: "Managed end-to-end execution, large-scale venue layouts, and logistics.",
+      longDesc: "Co-led the logistics committee for the flagship IEEE Open Week, directing overall event operations and massive physical infrastructure setups across the multi-day showcase.",
+      contributions: [
+        "Directed large-scale venue layouts and end-to-end event operations for the flagship IEEE showcase.",
+        "Oversaw installation of a 72-foot long visual display as the event's centerpiece.",
+        "Managed the end-to-end production pipeline for custom baby crocodile pique fabric merchandise, from sourcing to distribution."
+      ],
+      img: "images/volunteering/OpenWeekPhoto.jpg"
+    },
+    {
+      title: "MoraXtreme 10.0", role: "Logistics Committee Lead", period: "Oct 2025 – Jan 2026 · 4 mos",
+      desc: "Directed 24-hr continuous infrastructure for the flagship hackathon.",
+      longDesc: "Spearheaded the physical infrastructure and timeline execution for MoraXtreme 10.0, the IEEE Student Branch's flagship hackathon and the university's official practice ground for the global IEEEXtreme competition.",
+      contributions: [
+        "Directed continuous, 24-hour on-site infrastructure and power delivery for the full duration of the hackathon.",
+        "Owned timeline execution across the event, keeping every phase — setup, competition, teardown — on schedule.",
+        "Positioned the event as the practice ground for IEEEXtreme, mirroring that competition's real operational demands."
+      ],
+      gallery: ["images/volunteering/MoraXtreame1.jpg", "images/volunteering/MoraXtreame2.jpg"], img: "images/volunteering/MoraXtreame1.jpg"
+    },
+    {
+      title: "RoboGames 2026 (IESL)", role: "Organizing Committee Member", period: "Apr 2026 · 1 mo",
+      desc: "Contributed to operational planning, live-stream support, and technical arena setup.",
+      longDesc: "Contributed to high-stakes operational planning for the Institution of Engineers Sri Lanka's national robotics competition, spanning both pre-event prep and live competition-day execution.",
+      contributions: [
+        "Contributed to high-stakes operational planning ahead of the national robotics competition.",
+        "Managed live-stream technical support on competition day so remote audiences could follow every match.",
+        "Engineered the technical arena setup where the robots actually competed."
+      ],
+      gallery: ["images/volunteering/RoboGames1.jpg", "images/volunteering/RoboGames2.jpg"], img: "images/volunteering/RoboGames1.jpg"
+    },
+    {
+      title: "Hit the Grounds 2025", role: "Logistics Committee Co-Lead", period: "Nov 2025 – Jan 2026 · 3 mos",
+      desc: "Directed operational setup and welcoming logistics for the CSE orientation.",
+      longDesc: "Co-led comprehensive logistical workflows for the university's flagship CSE orientation program, from operational setup through to welcoming logistics on the day.",
+      contributions: [
+        "Co-led comprehensive logistical workflows across the full orientation program.",
+        "Assisted with strategic publicity campaigns to drive turnout among incoming students.",
+        "Directed on-the-ground operational setup and welcoming logistics for arriving participants."
+      ],
+      gallery: ["images/volunteering/HitTheGrounds1.jpg", "images/volunteering/HitTheGrounds2.jpg"], img: "images/volunteering/HitTheGrounds1.jpg"
+    },
 
     // Corporate Relations & Delegate Management
-    { title: "SLIoT Challenge 2026", role: "Delegate Handling Committee Member", period: "Jan 2026 – Apr 2026", desc: "Managed communications, registration, and hospitality for national-level contestants.", longDesc: "Managed end-to-end communications, registration verification, and hospitality for national-level contestants across both University and Open categories. Served as the primary point of contact and handler for top tech industry professionals, expert judges, and VIP delegates throughout the competition.", gallery: ["images/volunteering/SLIOT1.jpg", "images/volunteering/SLIOT2.jpg"], img: "images/volunteering/SLIOT1.jpg" },
-    { title: "CSE Careers Day 2025", role: "Company Coordinating OC Member", period: "Jan 2026", desc: "Handled corporate coordination and relations with industry partners.", longDesc: "Acted as the direct corporate liaison for top-tier tech companies participating in the annual career fair. Coordinated interview booth allocations, managed tight corporate schedules, and resolved real-time operational requests from visiting company representatives.", img: "images/volunteering/CarreersDay.jpg" },
-    { title: "CSESS Professional Events", role: "Committee Member", period: "Aug 2025 – Present", desc: "Drives initiatives bridging the gap between students and the tech industry.", longDesc: "Collaborate within the professional events committee to conceptualize, plan, and execute corporate networking sessions, industry tech talks, and professional development workshops — actively engaging industry leaders, corporate partners, and alumni to bridge academic studies and real-world tech trends.", img: "images/volunteering/CSESS.jpg" },
-    { title: "On the Map 3.0 (AIESEC)", role: "Organizing Committee Member", period: "Apr 2024 – Jun 2024", desc: "Planned event marketing and local logistics for the AIESEC community project.", longDesc: "Worked within a cross-functional team to plan and execute event marketing and local logistical workflows, tracking delegate engagement to support community project milestones.", gallery: ["images/volunteering/OnTheMap1.jpg", "images/volunteering/OnTheMap2.jpg"], img: "images/volunteering/OnTheMap1.jpg" },
+    {
+      title: "SLIoT Challenge 2026", role: "Delegate Handling Committee Member", period: "Jan 2026 – Apr 2026 · 4 mos",
+      desc: "Managed communications, registration, and hospitality for national-level contestants.",
+      longDesc: "Managed end-to-end communications, registration verification, and hospitality for national-level contestants across both University and Open categories of the SLIoT Challenge.",
+      contributions: [
+        "Managed end-to-end communications and registration verification for contestants across both University and Open categories.",
+        "Owned hospitality logistics for national-level contestants throughout the competition period.",
+        "Served as the primary point of contact and handler for top tech industry professionals, expert judges, and VIP delegates."
+      ],
+      gallery: ["images/volunteering/SLIOT1.jpg", "images/volunteering/SLIOT2.jpg"], img: "images/volunteering/SLIOT1.jpg"
+    },
+    {
+      title: "CSE Careers Day 2025", role: "Company Coordinating OC Member", period: "Jan 2026 · 1 mo",
+      desc: "Handled corporate coordination and relations with industry partners.",
+      longDesc: "Acted as the direct corporate liaison for top-tier tech companies participating in the annual CSE career fair, managing the on-the-ground relationship between the department and visiting employers.",
+      contributions: [
+        "Acted as the direct corporate liaison for top-tier tech companies participating in the fair.",
+        "Coordinated interview booth allocations and managed tight, overlapping corporate schedules.",
+        "Resolved real-time operational requests from visiting company representatives on the day."
+      ],
+      img: "images/volunteering/CarreersDay.jpg"
+    },
+    {
+      title: "CSESS Professional Events", role: "Committee Member", period: "Aug 2025 – Present · 1 yr 1 mo",
+      desc: "Drives initiatives bridging the gap between students and the tech industry.",
+      longDesc: "Collaborate within the CSE Student Society's professional events committee to conceptualize, plan, and execute programming that bridges academic engineering studies and the real-world tech industry.",
+      contributions: [
+        "Conceptualize, plan, and execute corporate networking sessions, industry tech talks, and professional development workshops for the student body.",
+        "Engage directly with industry leaders, corporate partners, and alumni to source speakers and opportunities.",
+        "Run as a hybrid, ongoing committee — over a year of continuous programming to date."
+      ],
+      img: "images/volunteering/CSESS.jpg"
+    },
+    {
+      title: "On the Map 3.0 (AIESEC)", role: "Organizing Committee Member", period: "Apr 2024 – Jun 2024 · 3 mos",
+      desc: "Planned event marketing and local logistics for the AIESEC community project.",
+      longDesc: "Worked within a cross-functional team at AIESEC in Sri Lanka to plan and execute event marketing and local logistical workflows for the On the Map 3.0 community project.",
+      contributions: [
+        "Planned and executed event marketing for the community project alongside a cross-functional AIESEC team.",
+        "Ran local logistical workflows supporting delegates on the ground.",
+        "Tracked delegate engagement to support community project milestones."
+      ],
+      gallery: ["images/volunteering/OnTheMap1.jpg", "images/volunteering/OnTheMap2.jpg"], img: "images/volunteering/OnTheMap1.jpg"
+    },
 
     // Creative Direction & Cultural Arts
-    { title: "The Merchant of Venice", role: "Cast Member (Main Character)", period: "Jan 2026 – Feb 2026", desc: "Cast in a leading role for the CSE Drama Fest production.", longDesc: "Cast in a leading role as a main character in the departmental production of The Merchant of Venice. Dedicated extensive hours to script mastery, character development, and rigorous team rehearsals to deliver a high-quality dramatic production.", gallery: ["images/volunteering/DramaFest1.jpg", "images/volunteering/DramaFest2.jpg"], img: "images/volunteering/DramaFest1.jpg" },
-    { title: "Batch '24 Inauguration", role: "Entertainment Coordinator", period: "Sep 2025", desc: "Curated and coordinated live entertainment for the welcome ceremony.", longDesc: "Curated, organized, and coordinated the live entertainment segments for the official welcome ceremony of the 24th CSE intake — managing live stage transitions, complex technical audio-visual setups, and strict performer schedules.", gallery: ["images/volunteering/Innaugeration1.jpg", "images/volunteering/Innaugeration2.jpg"], img: "images/volunteering/Innaugeration1.jpg" },
-    { title: "Mora Foresight 3.0", role: "Logistics & Cultural Segment Lead", period: "Feb 2025 – Aug 2025", desc: "Organized island-wide school outreach and led the cultural segment, Foresight Padura.", longDesc: "Organized and conducted island-wide school awareness sessions to promote technical literacy. Planned and executed the specialized logistics for 'Foresight Padura,' the event's dedicated cultural and musical segment, alongside managing daily event operations and volunteer tracking.", gallery: ["images/volunteering/foresight1.jpg", "images/volunteering/foresight2.jpg"], img: "images/volunteering/foresight1.jpg" },
-    { title: "Sakura 2025", role: "Decor & Performance Committee Member", period: "Mar 2025 – Apr 2025", desc: "Designed themed decorations and performed as a live vocalist.", longDesc: "Designed and executed themed physical decorations and stage backgrounds for the department's highly anticipated cultural evening. Contributed directly to the musical lineup as a live vocalist during the main event.", gallery: ["images/volunteering/Sakura1.jpg", "images/volunteering/Sakura2.jpg"], img: "images/volunteering/Sakura1.jpg" },
-    { title: "Mavisuru Ranga Sobha", role: "Organizing Committee Member & Performer", period: "Aug 2025", desc: "Contributed to backstage management and decoration while performing on stage.", longDesc: "Contributed to intense backstage management and decoration committees while participating directly as a performer on stage.", img: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?q=80&w=800" }
+    {
+      title: "The Merchant of Venice", role: "Cast Member (Main Character)", period: "Jan 2026 – Feb 2026 · 2 mos",
+      desc: "Cast in a leading role for the CSE Drama Fest production.",
+      longDesc: "Cast in a leading role as a main character in the departmental production of The Merchant of Venice, staged for the annual CSE Drama Fest.",
+      contributions: [
+        "Cast in a leading, main-character role for the department's annual Drama Fest production.",
+        "Dedicated extensive hours to script mastery and character development ahead of rehearsals.",
+        "Committed to rigorous team rehearsals to deliver a high-quality dramatic production."
+      ],
+      gallery: ["images/volunteering/DramaFest1.jpg", "images/volunteering/DramaFest2.jpg"], img: "images/volunteering/DramaFest1.jpg"
+    },
+    {
+      title: "Batch '24 Inauguration", role: "Entertainment Coordinator", period: "Sep 2025 · 1 mo",
+      desc: "Curated and coordinated live entertainment for the welcome ceremony.",
+      longDesc: "Curated, organized, and coordinated the live entertainment segments for the official welcome ceremony of the 24th CSE intake.",
+      contributions: [
+        "Curated and organized the live entertainment lineup for the official welcome ceremony.",
+        "Managed live stage transitions and complex technical audio-visual setups.",
+        "Coordinated strict performer schedules to keep the ceremony running on time."
+      ],
+      gallery: ["images/volunteering/Innaugeration1.jpg", "images/volunteering/Innaugeration2.jpg"], img: "images/volunteering/Innaugeration1.jpg"
+    },
+    {
+      title: "Mora Foresight 3.0", role: "Logistics & Cultural Segment Lead", period: "Feb 2025 – Aug 2025 · 7 mos",
+      desc: "Organized island-wide school outreach and led the cultural segment, Foresight Padura.",
+      longDesc: "Organized and conducted island-wide school awareness sessions to promote technical literacy, then led logistics for the flagship 3-day residential bootcamp and its dedicated cultural segment.",
+      contributions: [
+        "Organized and conducted island-wide school awareness sessions to promote technical literacy and event engagement.",
+        "Coordinated day-to-day event operations, resource management, and volunteer tracking for the main 3-day residential program.",
+        "Planned and executed the specialized logistics for 'Foresight Padura,' the event's dedicated cultural and musical segment."
+      ],
+      gallery: ["images/volunteering/foresight1.jpg", "images/volunteering/foresight2.jpg"], img: "images/volunteering/foresight1.jpg"
+    },
+    {
+      title: "Sakura 2025", role: "Decor & Performance Committee Member", period: "Mar 2025 – Apr 2025 · 2 mos",
+      desc: "Designed themed decorations and performed as a live vocalist.",
+      longDesc: "Designed and executed themed physical decorations and stage backgrounds for the department's highly anticipated cultural evening, then performed live during the main event.",
+      contributions: [
+        "Designed and executed themed physical decorations and stage backgrounds for the cultural evening.",
+        "Contributed directly to the musical lineup as a live vocalist during the main event."
+      ],
+      gallery: ["images/volunteering/Sakura1.jpg", "images/volunteering/Sakura2.jpg"], img: "images/volunteering/Sakura1.jpg"
+    },
+    {
+      title: "Mavisuru Ranga Sobha", role: "Organizing Committee Member & Performer", period: "Aug 2025 · 1 mo",
+      desc: "Contributed to backstage management and decoration while performing on stage.",
+      longDesc: "Contributed to intense backstage management and decoration committees for the Faculty of Engineering's Mavisuru Ranga Sobha, while also performing directly on stage.",
+      contributions: [
+        "Contributed to intense backstage management ahead of and during the show.",
+        "Sat on the decoration committee shaping the stage's visual presentation.",
+        "Participated directly as a performer on stage."
+      ],
+      img: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?q=80&w=800"
+    }
   ];
 
   return (
