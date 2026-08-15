@@ -636,10 +636,10 @@ export function Dashboard() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 1 }}
-          className="mt-auto pt-3 pb-2 border-t border-white/10 text-center"
+          className="mt-auto pt-3 pb-2 flex justify-center"
         >
-          <p className="text-xs text-gray-500 tracking-widest">
-            © {new Date().getFullYear()} Ishakya Gamage · <span className="text-gray-400">@hiru616</span>
+          <p className="text-xs text-gray-300 tracking-widest bg-black/85 backdrop-blur-2xl transform-gpu border border-white/10 rounded-full px-5 py-2 shadow-xl">
+            © {new Date().getFullYear()} Ishakya Gamage · <span className="text-white font-medium">@hiru616</span>
           </p>
         </motion.footer>
 
