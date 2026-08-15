@@ -227,7 +227,7 @@ export const LeadershipModal = ({ isOpen, onClose, onItemClick }: Omit<ModalProp
         "Oversaw installation of a 72-foot long visual display as the event's centerpiece.",
         "Managed the end-to-end production pipeline for custom baby crocodile pique fabric merchandise, from sourcing to distribution."
       ],
-      img: "images/volunteering/OpenWeek.jpg"
+      img: "images/volunteering/OpenWeekPhoto.jpg"
     },
     {
       title: "MoraXtreme 10.0", role: "Logistics Committee Lead", period: "Oct 2025 – Jan 2026 · 4 mos",

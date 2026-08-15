@@ -131,7 +131,7 @@ const logisticsEvents = [
   { title: "CSE Batch '23 Rep", role: "Department Representative", desc: "Primary student liaison for the 2023 CSE intake across semesters 4-6.", img: "images/volunteering/BatchRep.jpg" },
   { title: "IEEE Student Branch, UoM", role: "Logistics Committee Co-Lead", desc: "Co-leading the branch's permanent logistics committee & SOPs.", img: "images/volunteering/SB1.jpg" },
   { title: "MoraXtreme 10.0", role: "Logistics Lead", desc: "Directed 24-hr continuous infrastructure & power delivery.", img: "images/volunteering/MoraXtreame1.jpg" },
-  { title: "IEEE Open Week 2026", role: "Logistics Co-Lead", desc: "Managed 72-foot display & custom fabric merch production.", img: "images/volunteering/OpenWeek.jpg" },
+  { title: "IEEE Open Week 2026", role: "Logistics Co-Lead", desc: "Managed 72-foot display & custom fabric merch production.", img: "images/volunteering/OpenWeekPhoto.jpg" },
   { title: "RoboGames 2026 (IESL)", role: "Organizing Committee", desc: "Live-stream technical support and competition arena setup.", img: "images/volunteering/RoboGames1.jpg" },
   { title: "SLIoT Challenge 2026", role: "Delegate Handling OC", desc: "End-to-end event execution workflows and VIP procurement.", img: "images/volunteering/SLIOT1.jpg" },
   { title: "Hit the Grounds 2025", role: "Logistics Co-Lead", desc: "Operational setup and welcoming logistics for flagship orientation.", img: "images/volunteering/HitTheGrounds1.jpg" },
